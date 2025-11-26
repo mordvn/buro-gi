@@ -44,7 +44,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding: 60px 80px;
+        padding: 60px 80px 60px 120px;
         overflow: hidden;
       }
 
@@ -524,6 +524,7 @@
         color: var(--color-orange);
         line-height: 1.3;
         margin-bottom: 5px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
       }
 
       .service-card__description {
@@ -623,9 +624,10 @@
         position: absolute;
         left: 6px;
         top: 12px;
-        bottom: 60px;
+        bottom: 0;
         width: 4px;
         background-color: var(--color-teal);
+        box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.08);
       }
 
       .process__step {
@@ -640,16 +642,30 @@
       .process__step::before {
         content: "";
         position: absolute;
-        left: -39px;
+        left: -41px;
         top: 5px;
-        width: 14px;
-        height: 14px;
+        width: 18px;
+        height: 18px;
         background-color: var(--color-teal);
         border-radius: 50%;
+        z-index: 2;
+        box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.08);
       }
 
       .process__step:last-child::before {
-        box-shadow: 0 0 0 8px rgba(26, 90, 95, 0.2);
+        box-shadow: 0 0 0 8px rgba(26, 90, 95, 0.2),
+          3px 3px 8px rgba(0, 0, 0, 0.08);
+      }
+
+      .process__step:last-child::after {
+        content: "";
+        position: absolute;
+        left: -40px;
+        top: 19px;
+        bottom: -30px;
+        width: 20px;
+        background-color: #ffffff;
+        z-index: 1;
       }
 
       .process__step-text {
@@ -661,7 +677,7 @@
       }
 
       .process__step-text strong {
-        font-weight: 600;
+        font-weight: 700;
       }
 
       .process__image {
@@ -713,6 +729,25 @@
           margin-bottom: 40px;
         }
 
+        .process__steps {
+          padding-left: 38px;
+        }
+
+        .process__step::before {
+          left: -35px;
+          width: 16px;
+          height: 16px;
+        }
+
+        .process__step:last-child::before {
+          box-shadow: 0 0 0 6px rgba(26, 90, 95, 0.2),
+            3px 3px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .process__steps::before {
+          left: 6px;
+        }
+
         .process__step {
           padding-bottom: 25px;
         }
@@ -732,21 +767,21 @@
         }
 
         .process__steps {
-          padding-left: 30px;
+          padding-left: 35px;
         }
 
         .process__step::before {
-          left: 1px;
-          width: 10px;
-          height: 10px;
+          left: -32px;
+          width: 14px;
+          height: 14px;
         }
 
         .process__step:last-child::before {
-          box-shadow: 0 0 0 6px rgba(26, 90, 95, 0.2);
+          box-shadow: 0 0 0 5px rgba(26, 90, 95, 0.2);
         }
 
         .process__steps::before {
-          left: 5px;
+          left: 8px;
         }
 
         .process__step-text {
@@ -759,6 +794,603 @@
 
         .process__methodology-text {
           font-size: 0.9rem;
+        }
+      }
+
+      /* Why Us Section */
+      .why-us {
+        position: relative;
+        background-color: var(--color-teal);
+        min-height: 100vh;
+        padding: 80px;
+        overflow: hidden;
+      }
+
+      .why-us::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.05) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.05) 1px,
+            transparent 1px
+          );
+        background-size: 15px 15px;
+        pointer-events: none;
+      }
+
+      .why-us__container {
+        position: relative;
+        z-index: 1;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .why-us__title {
+        font-family: "Montserrat", sans-serif;
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+        font-weight: 600;
+        color: #ffffff;
+        letter-spacing: 0.02em;
+        margin-bottom: 80px;
+        line-height: 1.2;
+      }
+
+      .why-us__grid {
+        display: grid;
+        grid-template-columns: 1fr 1px 1fr;
+        gap: 60px 80px;
+      }
+
+      .why-us__divider {
+        background-color: rgba(255, 255, 255, 0.3);
+        grid-row: span 2;
+      }
+
+      .why-us__item {
+        display: flex;
+        gap: 20px;
+      }
+
+      .why-us__number {
+        font-family: "Montserrat", sans-serif;
+        font-size: clamp(5rem, 10vw, 8rem);
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.15);
+        line-height: 0.85;
+        flex-shrink: 0;
+        width: 0.65em;
+        text-align: center;
+      }
+
+      .why-us__text {
+        font-family: "Montserrat", sans-serif;
+        font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+        font-weight: 400;
+        color: #ffffff;
+        line-height: 1.6;
+        padding-top: 10px;
+      }
+
+      @media (max-width: 1024px) {
+        .why-us {
+          padding: 60px 50px;
+        }
+
+        .why-us__title {
+          margin-bottom: 60px;
+        }
+
+        .why-us__grid {
+          gap: 50px 60px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .why-us {
+          padding: 50px 30px;
+        }
+
+        .why-us__grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+
+        .why-us__divider {
+          display: none;
+        }
+
+        .why-us__title {
+          margin-bottom: 50px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .why-us {
+          padding: 40px 20px;
+        }
+
+        .why-us__grid {
+          gap: 35px;
+        }
+
+        .why-us__number {
+          font-size: 3.5rem;
+        }
+
+        .why-us__text {
+          font-size: 0.95rem;
+        }
+      }
+
+      /* Works Section */
+      .works {
+        background-color: #ffffff;
+        min-height: 100vh;
+        padding: 80px;
+      }
+
+      .works__container {
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .works__title {
+        font-family: "Montserrat", sans-serif;
+        font-size: clamp(1.8rem, 4.5vw, 3.15rem);
+        font-weight: 500;
+        color: var(--color-teal);
+        letter-spacing: 0.08em;
+        margin-bottom: 60px;
+        text-align: right;
+      }
+
+      .works__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+      }
+
+      .work-card {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .work-card__image {
+        width: 100%;
+        height: 280px;
+        overflow: hidden;
+        margin-bottom: 25px;
+      }
+
+      .work-card__image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .work-card__title {
+        font-family: "Montserrat", sans-serif;
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: var(--color-teal);
+        line-height: 1.35;
+        margin-bottom: 25px;
+      }
+
+      .work-card__description {
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 400;
+        color: var(--color-teal);
+        line-height: 1.65;
+        text-align: justify;
+      }
+
+      @media (max-width: 1200px) {
+        .works {
+          padding: 60px 50px;
+        }
+
+        .works__grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 40px;
+        }
+
+        .works__title {
+          margin-bottom: 50px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .works {
+          padding: 50px 30px;
+        }
+
+        .works__grid {
+          grid-template-columns: 1fr;
+          gap: 50px;
+        }
+
+        .works__title {
+          margin-bottom: 40px;
+          text-align: left;
+        }
+
+        .work-card__image {
+          height: 250px;
+        }
+
+        .work-card__title {
+          font-size: 1.1rem;
+          margin-bottom: 20px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .works {
+          padding: 40px 20px;
+        }
+
+        .work-card__image {
+          height: 200px;
+          margin-bottom: 20px;
+        }
+
+        .work-card__title {
+          font-size: 1rem;
+          margin-bottom: 15px;
+        }
+
+        .work-card__description {
+          font-size: 0.85rem;
+        }
+      }
+
+      /* Works Dark Section */
+      .works-dark {
+        position: relative;
+        background-color: var(--color-teal);
+        min-height: 100vh;
+        padding: 80px;
+        overflow: hidden;
+      }
+
+      .works-dark::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.05) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.05) 1px,
+            transparent 1px
+          );
+        background-size: 15px 15px;
+        pointer-events: none;
+      }
+
+      .works-dark__container {
+        position: relative;
+        z-index: 1;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .works-dark__title {
+        font-family: "Montserrat", sans-serif;
+        font-size: clamp(1.8rem, 4.5vw, 3.15rem);
+        font-weight: 500;
+        color: #ffffff;
+        letter-spacing: 0.08em;
+        margin-bottom: 60px;
+        text-align: right;
+      }
+
+      .works-dark__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        align-items: start;
+      }
+
+      .work-card-dark {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .work-card-dark__image {
+        width: 100%;
+        height: 280px;
+        overflow: hidden;
+        margin-bottom: 25px;
+      }
+
+      .work-card-dark__image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .work-card-dark__title {
+        font-family: "Montserrat", sans-serif;
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: #ffffff;
+        line-height: 1.35;
+        margin-bottom: 25px;
+      }
+
+      .work-card-dark__description {
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 400;
+        color: #ffffff;
+        line-height: 1.65;
+        text-align: justify;
+      }
+
+      /* Text-only card variant */
+      .work-card-dark--text-only .work-card-dark__title {
+        font-size: 1.25rem;
+        margin-bottom: 30px;
+      }
+
+      @media (max-width: 1200px) {
+        .works-dark {
+          padding: 60px 50px;
+        }
+
+        .works-dark__grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 40px;
+        }
+
+        .works-dark__title {
+          margin-bottom: 50px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .works-dark {
+          padding: 50px 30px;
+        }
+
+        .works-dark__grid {
+          grid-template-columns: 1fr;
+          gap: 50px;
+        }
+
+        .works-dark__title {
+          margin-bottom: 40px;
+          text-align: left;
+        }
+
+        .work-card-dark__image {
+          height: 250px;
+        }
+
+        .work-card-dark__title {
+          font-size: 1.1rem;
+          margin-bottom: 20px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .works-dark {
+          padding: 40px 20px;
+        }
+
+        .work-card-dark__image {
+          height: 200px;
+          margin-bottom: 20px;
+        }
+
+        .work-card-dark__title {
+          font-size: 1rem;
+          margin-bottom: 15px;
+        }
+
+        .work-card-dark__description {
+          font-size: 0.85rem;
+        }
+      }
+
+      /* Contact Section */
+      .contact {
+        background-color: #ffffff;
+        min-height: 100vh;
+        padding: 40px 80px 80px;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+      }
+
+      .contact__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 120px;
+      }
+
+      .contact__decals {
+        width: 120px;
+        height: auto;
+      }
+
+      .contact__portfolio-text {
+        font-family: "Montserrat", sans-serif;
+        font-size: 1rem;
+        font-weight: 400;
+        font-style: italic;
+        color: var(--color-teal);
+      }
+
+      .contact__content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        max-width: 700px;
+      }
+
+      .contact__title {
+        font-family: "Montserrat", sans-serif;
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        font-weight: 700;
+        font-style: italic;
+        color: var(--color-teal);
+        line-height: 1.1;
+        margin-bottom: 40px;
+      }
+
+      .contact__info {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .contact__phone,
+      .contact__email {
+        font-family: "Montserrat", sans-serif;
+        font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+        font-weight: 400;
+        color: var(--color-teal);
+        text-decoration: none;
+        transition: opacity 0.2s ease;
+      }
+
+      .contact__phone:hover,
+      .contact__email:hover {
+        opacity: 0.7;
+      }
+
+      .contact__footer {
+        position: absolute;
+        bottom: 80px;
+        left: 80px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .contact__handle {
+        font-family: "Montserrat", sans-serif;
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--color-teal);
+      }
+
+      .contact__socials {
+        display: flex;
+        gap: 10px;
+      }
+
+      .contact__social-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        color: var(--color-teal);
+        transition: opacity 0.2s ease;
+      }
+
+      .contact__social-link:hover {
+        opacity: 0.7;
+      }
+
+      .contact__social-link svg {
+        width: 100%;
+        height: 100%;
+      }
+
+      @media (max-width: 1024px) {
+        .contact {
+          padding: 40px 50px 60px;
+        }
+
+        .contact__header {
+          margin-bottom: 80px;
+        }
+
+        .contact__footer {
+          bottom: 60px;
+          left: 50px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .contact {
+          padding: 30px 30px 100px;
+        }
+
+        .contact__header {
+          margin-bottom: 60px;
+        }
+
+        .contact__decals {
+          width: 80px;
+        }
+
+        .contact__portfolio-text {
+          font-size: 0.9rem;
+        }
+
+        .contact__footer {
+          bottom: 40px;
+          left: 30px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .contact {
+          padding: 20px 20px 100px;
+        }
+
+        .contact__header {
+          margin-bottom: 50px;
+        }
+
+        .contact__decals {
+          width: 60px;
+        }
+
+        .contact__portfolio-text {
+          font-size: 0.8rem;
+        }
+
+        .contact__title {
+          margin-bottom: 30px;
+        }
+
+        .contact__footer {
+          bottom: 30px;
+          left: 20px;
+        }
+
+        .contact__handle {
+          font-size: 0.9rem;
+        }
+
+        .contact__social-link {
+          width: 24px;
+          height: 24px;
         }
       }
     </style>
@@ -1017,6 +1649,276 @@
             помощью видеокамер. Наш инструментарий гибкий и оптимально
             адаптируется под ваше целеполагание
           </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Us Section -->
+    <section class="why-us">
+      <div class="why-us__container">
+        <h2 class="why-us__title">ПОЧЕМУ МЫ?</h2>
+
+        <div class="why-us__grid">
+          <div class="why-us__item">
+            <span class="why-us__number">1</span>
+            <p class="why-us__text">
+              Обладаем не только исследовательскими компетенциями, но также
+              уникальной урбанистической экспертизой, которая позволяет
+              превращать инсайты в продуманные проектные рекомендации
+            </p>
+          </div>
+
+          <div class="why-us__divider"></div>
+
+          <div class="why-us__item">
+            <span class="why-us__number">3</span>
+            <p class="why-us__text">
+              Мы не работаем в режиме конвейера, мы исследовательский бутик.
+              Каждый клиент важен для нас, и мы гарантируем индивидуальный
+              подход и глубокое погружение в волнующую вас проблематику
+            </p>
+          </div>
+
+          <div class="why-us__item">
+            <span class="why-us__number">2</span>
+            <p class="why-us__text">
+              Большой опыт и междисциплинарные знания помогают нам решать разные
+              практические задачи наших клиентов
+            </p>
+          </div>
+
+          <div class="why-us__item">
+            <span class="why-us__number">4</span>
+            <p class="why-us__text">
+              Мы вовлекаем вас в процесс исследования и разделяем радость
+              совместных открытий
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Works Section -->
+    <section class="works">
+      <div class="works__container">
+        <h2 class="works__title">ПРИМЕРЫ РАБОТ</h2>
+
+        <div class="works__grid">
+          <div class="work-card">
+            <div class="work-card__image">
+              <img
+                src="assets/work-example-1.jpg"
+                alt="Проект новой школы в г. Карабаш"
+              />
+            </div>
+            <h3 class="work-card__title">
+              Проект новой школы в г. Карабаш по заказу бюро EdArchitects
+            </h3>
+            <p class="work-card__description">
+              Бюро обратилось к нам с запросом о проведении исследования в г.
+              Карабаше. Цель — понять, каким должен быть функционал новой школы
+              помимо образовательного, исходя из актуальных потребностей города
+              и горожан. Мы провели 20 глубинных интервью с местными
+              чиновниками, бизнесменами, активистами, учителями, школьниками и
+              другими стейкхолдерами процесса образования в городе и разработали
+              рекомендации о функциональном наполнении будущей школы, а также
+              стратегии привлечения персонала, используя собственные разработки
+              на основании теории социального капитала
+            </p>
+          </div>
+
+          <div class="work-card">
+            <div class="work-card__image">
+              <img
+                src="assets/work-example-2.jpg"
+                alt="PUBLAB — Лаборатория искусства города"
+              />
+            </div>
+            <h3 class="work-card__title">
+              PUBLAB — Лаборатория искусства города по заказу Музейного центра
+              «Площадь Мира»
+            </h3>
+            <p class="work-card__description">
+              Музейный центр обратился к нам с запросом об исследовательском
+              сопровождении лабораторий современного искусства в Красноярске. Мы
+              проводили фокус-группы в районах проведения лабораторий и
+              рассказывали художникам об идентичности этих районов и их
+              отношении к уличному искусству. Далее мы с помощью камер наблюдали
+              территории размещения искусства до, во время и после появления
+              объектов и проводили повторные фокус-группы с горожанами, чтобы
+              понять, как они воспринимают объекты, созданные в рамках
+              лабораторий. Результатом проекта стала сценарная модель для
+              проведения лабораторий современного искусства
+            </p>
+          </div>
+
+          <div class="work-card">
+            <div class="work-card__image">
+              <img src="assets/work-example-3.jpg" alt="Проект «У Воды»" />
+            </div>
+            <h3 class="work-card__title">
+              Проект «У Воды» по заказу девелопера «Атомстройкомплекс» в г.
+              Екатеринбург
+            </h3>
+            <p class="work-card__description">
+              Компания обратилась к нам с запросом на исследование Шарташского
+              лесного парка вокруг озера Шарташ, а также опыта создания жилых
+              комплексов рядом с водными пространствами в Екатеринбурге для
+              проектирования нового жилого комплекса в районе Изоплит. В
+              качестве методов исследования мы использовали глубинные интервью,
+              включённое наблюдение, а также наблюдение и уличные
+              экспресс-интервью с жителями жилых комплексов. В результате
+              исследования мы предоставили заказчику рекомендации о балансе
+              функций дворов и общественных пространств у воды, а также о том,
+              какие функции будут востребованы и уместны для общественного
+              пространства конкретно на озере Шарташ вблизи проектируемого
+              жилого комплекса
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Works Dark Section -->
+    <section class="works-dark">
+      <div class="works-dark__container">
+        <h2 class="works-dark__title">ПРИМЕРЫ РАБОТ</h2>
+
+        <div class="works-dark__grid">
+          <div class="work-card-dark">
+            <div class="work-card-dark__image">
+              <img
+                src="assets/work-example-4.jpg"
+                alt="Проект «Старшие: Мужской вопрос»"
+              />
+            </div>
+            <h3 class="work-card-dark__title">
+              Проект «Старшие: Мужской вопрос» по заказу фонда «Добрый город
+              Петербург»
+            </h3>
+            <p class="work-card-dark__description">
+              Фонд обратился к нам с таким запросом: изучить причины того,
+              почему мужчины редко участвуют в проекте фонда «Старшие», который
+              направлен на социализацию и дополнительное образование
+              петербуржцев серебряного возраста. Мы провели серию глубинных
+              интервью с петербуржцами 50+ и выявили различные барьеры, которые
+              мешают им вовлекаться в социальную активность. Помимо структурных
+              проблем гендерной социализации были выявлены также проблемы, на
+              которые фонд может повлиять, в частности, тематические направления
+              предлагаемых активностей, а также визуальная репрезентация
+              возрастных мужчин на сайте и в социальных сетях проекта
+            </p>
+          </div>
+
+          <div class="work-card-dark">
+            <div class="work-card-dark__image">
+              <img
+                src="assets/work-example-5.jpg"
+                alt="Исследование корпоративной социальной политики ПАО «Славнефть-Мегионнефтегаз»"
+              />
+            </div>
+            <h3 class="work-card-dark__title">
+              Исследование корпоративной социальной политики ПАО
+              «Славнефть-Мегионнефтегаз» по заказу ЦСП «Платформа»
+            </h3>
+            <p class="work-card-dark__description">
+              Центр социального проектирования обратился к нам с тем, чтобы
+              усилить своё исследование урбанистической экспертизой. Мы провели
+              серию глубинных интервью с различными стейкхолдерами: сотрудниками
+              компании, живущими в г. Мегионе, операторами культурных инициатив,
+              предпринимателями, урбанистами и прочими людьми, являющимися либо
+              провайдерами, либо реципиентами корпоративной социальной политики
+              в городе. Мы выявили как перспективные направления корпоративной
+              социальной политики в отношении городской среды в г. Мегионе, так
+              и потенциальные линии сотрудничества корпорации и города, которые
+              могут повысить эффективность вложения средств в городскую среду
+            </p>
+          </div>
+
+          <div class="work-card-dark work-card-dark--text-only">
+            <div class="work-card-dark__image">
+              <img
+                src="assets/work-example-6.jpg"
+                alt="Участие в разработке заявок на конкурс малых городов"
+              />
+            </div>
+            <h3 class="work-card-dark__title">
+              Участие в разработке заявок на конкурс малых городов и
+              исторических поселений
+            </h3>
+            <p class="work-card-dark__description">
+              Мы не предлагаем разделы под ключ, но оказываем помощь на разных
+              этапах. Наша помощь заключается в проведении глубинных интервью с
+              горожанами и стейкхолдерами, экспертного сенсуса территории
+              проектирования, а также проведения сессий по формированию
+              культурного плана будущего пространства на раннем этапе разработки
+              заявки и на её финализации. Также на основании выявленных нами
+              структур идентичности города мы предлагаем архитекторам и
+              планировщикам проектные решения, которые могут эффективно работать
+              с идентичностью, а также являться инвестицией в локальное
+              сообщество. За время нашей работы мы помогли 9 городам победить:
+              Усолье-Сибирское, Усть-Илимск, Тулун, Енисейск,
+              Петровск-Забайкальский, Иланский, Железногорск-Илимский,
+              Шимановск; а город Алзамай с нашей помощью победил дважды
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+      <div class="contact__header">
+        <img
+          src="assets/decals-contact.png"
+          alt=""
+          class="contact__decals"
+          aria-hidden="true"
+        />
+        <span class="contact__portfolio-text"
+          >Портфолио Гражданской инженерии</span
+        >
+      </div>
+
+      <div class="contact__content">
+        <h2 class="contact__title">Давайте<br />обсудим проект</h2>
+        <div class="contact__info">
+          <a href="tel:+79268624079" class="contact__phone">+7 926 862 4079</a>
+          <a href="mailto:buro.gi@civitology.ru" class="contact__email"
+            >buro.gi@civitology.ru</a
+          >
+        </div>
+      </div>
+
+      <div class="contact__footer">
+        <span class="contact__handle">@grazhdan_inz</span>
+        <div class="contact__socials">
+          <a
+            href="https://vk.com/grazhdan_inz"
+            class="contact__social-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="ВКонтакте"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.118-5.335-3.202C4.624 10.857 4 8.684 4 8.245c0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.678.847 2.455 2.27 4.607 2.86 4.607.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.203.17-.407.44-.407h2.744c.373 0 .508.203.508.643v3.473c0 .372.17.508.271.508.22 0 .407-.136.813-.542 1.27-1.422 2.18-3.61 2.18-3.61.119-.254.322-.491.763-.491h1.744c.525 0 .644.27.525.643-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.779 1.203 1.253.745.847 1.32 1.558 1.473 2.05.17.475-.085.72-.576.72z"
+              />
+            </svg>
+          </a>
+          <a
+            href="https://t.me/grazhdan_inz"
+            class="contact__social-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Telegram"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"
+              />
+            </svg>
+          </a>
         </div>
       </div>
     </section>
