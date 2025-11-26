@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Гражданская Инженерия — бюро исследований</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      @font-face {
+        font-family: "Nimbus Mono";
+        src: local("Nimbus Mono PS"), local("Nimbus Mono"), local("NimbusMono");
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --color-teal: #1a5a5f;
+        --color-orange: #e8a54b;
+        --color-white: #f5f5f5;
+        --color-gray: #9cb8b8;
+        --color-light: #c8dede;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        background-color: var(--color-teal);
+        min-height: 100vh;
+      }
+
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 60px 80px;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.05) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.05) 1px,
+            transparent 1px
+          );
+        background-size: 15px 15px;
+        pointer-events: none;
+      }
+
+      .logo {
+        position: relative;
+        z-index: 1;
+      }
+
+      .title {
+        font-family: "Nimbus Mono", "Nimbus Mono PS", "Courier New", monospace;
+        font-size: clamp(3.45rem, 9.2vw, 7.5rem);
+        font-weight: 400;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        margin-bottom: 10px;
+      }
+
+      .title-line {
+        display: block;
+      }
+
+      .text-orange {
+        color: var(--color-orange);
+      }
+
+      .text-white {
+        color: var(--color-white);
+      }
+
+      .text-gray {
+        color: var(--color-gray);
+      }
+
+      .text-light {
+        color: var(--color-light);
+      }
+
+      .subtitle {
+        font-family: "Montserrat", sans-serif;
+        font-size: clamp(1.2rem, 2.5vw, 1.75rem);
+        font-weight: 400;
+        color: var(--color-white);
+        margin-top: 20px;
+        letter-spacing: 0.02em;
+      }
+
+      .decals {
+        position: absolute;
+        bottom: 40px;
+        right: 40px;
+        width: 450px;
+        height: auto;
+        z-index: 1;
+        opacity: 0.9;
+      }
+
+      @media (max-width: 1024px) {
+        .hero {
+          padding: 40px 50px;
+        }
+
+        .decals {
+          width: 300px;
+          bottom: 30px;
+          right: 30px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero {
+          padding: 30px;
+          justify-content: flex-start;
+          padding-top: 80px;
+        }
+
+        .decals {
+          width: 200px;
+          bottom: 20px;
+          right: 20px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero {
+          padding: 20px;
+          padding-top: 60px;
+        }
+
+        .decals {
+          width: 150px;
+          bottom: 15px;
+          right: 15px;
+        }
+      }
+
+      /* About Section */
+      .about {
+        background-color: #ffffff;
+        min-height: 100vh;
+        padding: 80px 80px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .about__container {
+        max-width: 1200px;
+        width: 100%;
+      }
+
+      .about__title {
+        font-family: "Montserrat", sans-serif;
+        font-size: clamp(1.8rem, 4.5vw, 3.15rem);
+        font-weight: 500;
+        color: var(--color-teal);
+        letter-spacing: 0.02em;
+        margin-bottom: 30px;
+      }
+
+      .about__description {
+        font-family: "Montserrat", sans-serif;
+        font-size: clamp(1rem, 1.8vw, 1.25rem);
+        font-weight: 400;
+        color: var(--color-teal);
+        line-height: 1.6;
+        max-width: 1000px;
+        margin-bottom: 60px;
+      }
+
+      /* Team Section */
+      .team {
+        display: flex;
+        gap: 60px;
+        flex-wrap: wrap;
+      }
+
+      .team__member {
+        display: flex;
+        gap: 30px;
+        flex: 1;
+        min-width: 400px;
+      }
+
+      .team__photo {
+        flex-shrink: 0;
+        width: 280px;
+        height: 380px;
+        overflow: hidden;
+      }
+
+      .team__photo img {
+        width: 100%;
+        height: auto;
+        min-height: 100%;
+        object-fit: cover;
+        object-position: center 15%;
+      }
+
+      .team__photo img.photo-bystrova {
+        object-position: center 12%;
+      }
+
+      .team__info {
+        display: flex;
+        flex-direction: column;
+        padding-top: 10px;
+      }
+
+      .team__name {
+        font-family: "Montserrat", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: var(--color-teal);
+        margin-bottom: 15px;
+      }
+
+      .team__role {
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.95rem;
+        font-weight: 400;
+        color: var(--color-teal);
+        line-height: 1.6;
+        font-style: italic;
+      }
+
+      @media (max-width: 1200px) {
+        .team {
+          flex-direction: column;
+          gap: 50px;
+        }
+
+        .team__member {
+          min-width: auto;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .about {
+          padding: 60px 30px;
+        }
+
+        .team__member {
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        .team__photo {
+          width: 100%;
+          max-width: 280px;
+          height: 350px;
+        }
+
+        .about__description {
+          margin-bottom: 40px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .about {
+          padding: 40px 20px;
+        }
+
+        .team__photo {
+          height: 300px;
+        }
+
+        .team__name {
+          font-size: 1.25rem;
+        }
+      }
+
+      /* Stats Section */
+      .stats {
+        display: flex;
+        min-height: 100vh;
+        background-color: #ffffff;
+      }
+
+      .stats__content {
+        flex: 1;
+        padding: 80px;
+        padding-left: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+      }
+
+      .stats__highlight {
+        background-color: var(--color-teal);
+        padding: 40px 80px;
+        margin-bottom: 50px;
+        max-width: 680px;
+      }
+
+      .stats__highlight-text {
+        font-family: "Montserrat", sans-serif;
+        font-size: 1.25rem;
+        font-weight: 400;
+        color: #ffffff;
+        line-height: 1.5;
+        margin-bottom: 20px;
+      }
+
+      .stats__highlight-text:last-child {
+        margin-bottom: 0;
+      }
+
+      .stats__number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        font-style: italic;
+      }
+
+      .stats__clients {
+        max-width: 600px;
+        padding-left: 80px;
+      }
+
+      .stats__clients-text {
+        font-family: "Montserrat", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: var(--color-teal);
+        line-height: 1.6;
+        margin-bottom: 30px;
+      }
+
+      .stats__partners {
+        font-family: "Montserrat", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: var(--color-teal);
+        line-height: 1.6;
+      }
+
+      .stats__image {
+        flex: 1;
+        min-height: 100%;
+        position: relative;
+      }
+
+      .stats__image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      @media (max-width: 1200px) {
+        .stats {
+          flex-direction: column;
+        }
+
+        .stats__content {
+          padding: 60px 50px;
+          padding-left: 0;
+        }
+
+        .stats__highlight {
+          padding: 40px 50px;
+        }
+
+        .stats__clients {
+          padding-left: 50px;
+        }
+
+        .stats__image {
+          min-height: 500px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .stats__content {
+          padding: 40px 30px;
+          padding-left: 0;
+        }
+
+        .stats__highlight {
+          padding: 30px;
+          margin-bottom: 40px;
+        }
+
+        .stats__clients {
+          padding-left: 30px;
+        }
+
+        .stats__highlight-text {
+          font-size: 1.1rem;
+        }
+
+        .stats__number {
+          font-size: 2rem;
+        }
+
+        .stats__clients-text,
+        .stats__partners {
+          font-size: 1rem;
+        }
+
+        .stats__image {
+          min-height: 400px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .stats__content {
+          padding: 30px 20px;
+          padding-left: 0;
+        }
+
+        .stats__highlight {
+          padding: 25px 20px;
+        }
+
+        .stats__clients {
+          padding-left: 20px;
+        }
+
+        .stats__highlight-text {
+          font-size: 1rem;
+        }
+
+        .stats__number {
+          font-size: 1.75rem;
+        }
+
+        .stats__image {
+          min-height: 300px;
+        }
+      }
+
+      /* Services Section */
+      .services {
+        position: relative;
+        background-color: var(--color-teal);
+        min-height: 100vh;
+        padding: 80px;
+        overflow: hidden;
+      }
+
+      .services::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.05) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.05) 1px,
+            transparent 1px
+          );
+        background-size: 15px 15px;
+        pointer-events: none;
+      }
+
+      .services__container {
+        position: relative;
+        z-index: 1;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .services__title {
+        font-family: "Montserrat", sans-serif;
+        font-size: clamp(1.6rem, 4vw, 2.8rem);
+        font-weight: 600;
+        color: #ffffff;
+        letter-spacing: 0.02em;
+        margin-bottom: 80px;
+        max-width: 900px;
+        line-height: 1.2;
+      }
+
+      .services__grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 50px 40px;
+      }
+
+      .service-card {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .service-card__title {
+        font-family: "Montserrat", sans-serif;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--color-orange);
+        line-height: 1.3;
+        margin-bottom: 5px;
+      }
+
+      .service-card__description {
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.95rem;
+        font-weight: 400;
+        font-style: italic;
+        color: #ffffff;
+        line-height: 1.5;
+      }
+
+      @media (max-width: 1200px) {
+        .services {
+          padding: 60px 50px;
+        }
+
+        .services__grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 40px 50px;
+        }
+
+        .services__title {
+          margin-bottom: 60px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .services {
+          padding: 50px 30px;
+        }
+
+        .services__grid {
+          grid-template-columns: 1fr;
+          gap: 35px;
+        }
+
+        .services__title {
+          margin-bottom: 50px;
+        }
+
+        .service-card__title {
+          font-size: 1.15rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .services {
+          padding: 40px 20px;
+        }
+
+        .services__title {
+          margin-bottom: 40px;
+        }
+
+        .service-card__title {
+          font-size: 1.1rem;
+        }
+
+        .service-card__description {
+          font-size: 0.9rem;
+        }
+      }
+
+      /* Process Section */
+      .process {
+        display: flex;
+        min-height: 100vh;
+      }
+
+      .process__content {
+        flex: 1;
+        background-color: #ffffff;
+        padding: 80px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .process__title {
+        font-family: "Montserrat", sans-serif;
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+        font-weight: 600;
+        color: var(--color-teal);
+        letter-spacing: 0.02em;
+        margin-bottom: 50px;
+        line-height: 1.2;
+      }
+
+      .process__steps {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        padding-left: 40px;
+      }
+
+      .process__steps::before {
+        content: "";
+        position: absolute;
+        left: 7px;
+        top: 12px;
+        bottom: 12px;
+        width: 2px;
+        background-color: var(--color-teal);
+      }
+
+      .process__step {
+        position: relative;
+        padding-bottom: 30px;
+      }
+
+      .process__step:last-child {
+        padding-bottom: 0;
+      }
+
+      .process__step::before {
+        content: "";
+        position: absolute;
+        left: 1px;
+        top: 5px;
+        width: 14px;
+        height: 14px;
+        background-color: var(--color-teal);
+        border-radius: 50%;
+      }
+
+      .process__step:last-child::before {
+        box-shadow: 0 0 0 8px rgba(26, 90, 95, 0.2);
+      }
+
+      .process__step-text {
+        font-family: "Montserrat", sans-serif;
+        font-size: 1.05rem;
+        font-weight: 400;
+        color: var(--color-teal);
+        line-height: 1.6;
+      }
+
+      .process__step-text strong {
+        font-weight: 600;
+      }
+
+      .process__image {
+        flex: 1;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        background-size: cover;
+        background-position: center top;
+      }
+
+      .process__methodology {
+        background-color: var(--color-teal);
+        padding: 40px 50px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .process__methodology-text {
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.95rem;
+        font-weight: 400;
+        font-style: italic;
+        color: #ffffff;
+        line-height: 1.7;
+      }
+
+      @media (max-width: 1200px) {
+        .process {
+          flex-direction: column;
+        }
+
+        .process__content {
+          padding: 60px 50px;
+        }
+
+        .process__image {
+          min-height: 500px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .process__content {
+          padding: 40px 30px;
+        }
+
+        .process__title {
+          margin-bottom: 40px;
+        }
+
+        .process__step {
+          padding-bottom: 25px;
+        }
+
+        .process__methodology {
+          padding: 30px;
+        }
+
+        .process__image {
+          min-height: 400px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .process__content {
+          padding: 30px 20px;
+        }
+
+        .process__steps {
+          padding-left: 30px;
+        }
+
+        .process__step::before {
+          left: 1px;
+          width: 10px;
+          height: 10px;
+        }
+
+        .process__step:last-child::before {
+          box-shadow: 0 0 0 6px rgba(26, 90, 95, 0.2);
+        }
+
+        .process__steps::before {
+          left: 5px;
+        }
+
+        .process__step-text {
+          font-size: 0.95rem;
+        }
+
+        .process__methodology {
+          padding: 25px 20px;
+        }
+
+        .process__methodology-text {
+          font-size: 0.9rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hero">
+      <div class="logo">
+        <h1 class="title">
+          <span class="title-line"
+            ><span class="text-orange">ГРАЖДАН</span
+            ><span class="text-light">СКАЯ</span></span
+          >
+          <span class="title-line"
+            ><span class="text-light">ИНЖЕНЕРИЯ</span></span
+          >
+        </h1>
+        <p class="subtitle">бюро исследований</p>
+      </div>
+      <img
+        src="assets/decals-hero.png"
+        alt=""
+        class="decals"
+        aria-hidden="true"
+      />
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+      <div class="about__container">
+        <h2 class="about__title">ГРАЖДАНСКАЯ ИНЖЕНЕРИЯ</h2>
+        <p class="about__description">
+          бюро исследований, которое специализируется на социологических методах
+          работы с городским пространством и городскими сообществами. Мы
+          предлагаем индивидуальный подход, адаптирующийся под конкретные задачи
+          наших заказчиков. Наша экспертиза позволяет упаковывать
+          исследовательские инсайты в проектные гайдлайны
+        </p>
+
+        <div class="team">
+          <div class="team__member">
+            <div class="team__photo">
+              <img src="assets/person-ivanov.jpg" alt="Пётр Иванов" />
+            </div>
+            <div class="team__info">
+              <h3 class="team__name">Пётр Иванов</h3>
+              <p class="team__role">
+                социолог города, урбанист, редактор телеграм-канала «Урбанизм
+                как смысл жизни», сооcнователь школы урбанистики и городских
+                исследований «Города», приглашённый преподаватель РАНХиГС,
+                ТюмГУ, МГПУ и Urban Hub
+              </p>
+            </div>
+          </div>
+
+          <div class="team__member">
+            <div class="team__photo">
+              <img
+                src="assets/person-bystrova.jpg"
+                alt="Мария Быстрова"
+                class="photo-bystrova"
+              />
+            </div>
+            <div class="team__info">
+              <h3 class="team__name">Мария Быстрова</h3>
+              <p class="team__role">
+                городская исследовательница, сооcнователь школы урбанистики и
+                городских исследований «Города», автор телеграм-канала
+                «Профессиональная горожанка»
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+      <div class="stats__content">
+        <div class="stats__highlight">
+          <p class="stats__highlight-text">
+            <span class="stats__number">7</span> лет на рынке социологических
+            исследований в урбанистике
+          </p>
+          <p class="stats__highlight-text">
+            Более <span class="stats__number">60</span> проектов в
+            <span class="stats__number">22</span> регионах России, а также в
+            Казахстане
+          </p>
+        </div>
+
+        <div class="stats__clients">
+          <p class="stats__clients-text">
+            Среди наших клиентов: архитектурные бюро, институты развития,
+            некоммерческие организации, девелоперы, отраслевые ассоциации,
+            крупные корпорации и представители креативных индустрий
+          </p>
+          <p class="stats__partners">
+            Мы сотрудничали с Wowhaus, КБ «Стрелка», Агентством стратегических
+            инициатив, EdArchitects, АНО РГП «Институт города», Музейным центром
+            «Площадь Мира», СМ.СИТИ, фондом «Добрый город Петербург» и многими
+            другими
+          </p>
+        </div>
+      </div>
+
+      <div class="stats__image">
+        <img src="assets/picture-city-1.png" alt="Городской пейзаж с людьми" />
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+      <div class="services__container">
+        <h2 class="services__title">
+          С КАКИМИ ЗАДАЧАМИ ВЫ МОЖЕТЕ К НАМ ОБРАТИТЬСЯ?
+        </h2>
+
+        <div class="services__grid">
+          <div class="service-card">
+            <h3 class="service-card__title">
+              Комплексные или отраслевые исследования
+            </h3>
+            <p class="service-card__description">
+              для разработки мастер-планов
+            </p>
+          </div>
+
+          <div class="service-card">
+            <h3 class="service-card__title">
+              Исследования пользовательского опыта
+            </h3>
+            <p class="service-card__description">
+              для некоммерческих организаций
+            </p>
+          </div>
+
+          <div class="service-card">
+            <h3 class="service-card__title">
+              Исследования для разработки сценариев
+            </h3>
+            <p class="service-card__description">
+              соучаствующего проектирования в нестандартных ситуациях
+            </p>
+          </div>
+
+          <div class="service-card">
+            <h3 class="service-card__title">Социокультурные исследования</h3>
+            <p class="service-card__description">
+              для разработки заявок на конкурс малых городов и исторических
+              поселений
+            </p>
+          </div>
+
+          <div class="service-card">
+            <h3 class="service-card__title">Предпроектные исследования</h3>
+            <p class="service-card__description">
+              для благоустройства общественных пространств
+            </p>
+          </div>
+
+          <div class="service-card">
+            <h3 class="service-card__title">RND</h3>
+            <p class="service-card__description">
+              в сфере креативных индустрий и современного искусства
+            </p>
+          </div>
+
+          <div class="service-card">
+            <h3 class="service-card__title">RND</h3>
+            <p class="service-card__description">
+              в сфере корпоративной социальной ответственности и ESG
+            </p>
+          </div>
+
+          <div class="service-card">
+            <h3 class="service-card__title">
+              Исследования и социокультурное программирование
+            </h3>
+            <p class="service-card__description">для культурных институций</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process">
+      <div class="process__content">
+        <h2 class="process__title">КАК ВЫСТРАИВАЕМ РАБОТУ?</h2>
+
+        <div class="process__steps">
+          <div class="process__step">
+            <p class="process__step-text">
+              <strong>Встречаемся</strong> или созваниваемся с вами и обсуждаем
+              ваше целеполагание и необходимость проведения исследования
+            </p>
+          </div>
+
+          <div class="process__step">
+            <p class="process__step-text">
+              <strong>Подбираем</strong> оптимальный первичный сценарий
+              исследования и набор методов
+            </p>
+          </div>
+
+          <div class="process__step">
+            <p class="process__step-text">
+              <strong>Отправляемся в поле</strong>, находясь с вами на связи
+            </p>
+          </div>
+
+          <div class="process__step">
+            <p class="process__step-text">
+              <strong>В формате «длинного стола» обсуждаем</strong> с вами
+              полевые инсайты после первой половины поля и при необходимости
+              корректируем сценарий исследования
+            </p>
+          </div>
+
+          <div class="process__step">
+            <p class="process__step-text">
+              <strong>Формируем исследовательский отчёт</strong> под ваши задачи
+              — тезисный и/или развёрнутый
+            </p>
+          </div>
+
+          <div class="process__step">
+            <p class="process__step-text">
+              <strong>Разрабатываем рекомендации</strong> на основании инсайтов
+              и собственной урбанистической экспертизы, если необходимо —
+              привлекаем сторонних экспертов из узких сфер
+            </p>
+          </div>
+
+          <div class="process__step">
+            <p class="process__step-text">
+              <strong>В формате семинара передаём вам результаты</strong>
+              исследования и рекомендации, подробно показываем, как
+              интегрировать их в вашу деятельность
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="process__image"
+        style="background-image: url('assets/picture-city-2.png')"
+      >
+        <div class="process__methodology">
+          <p class="process__methodology-text">
+            Мы работаем в качественной методологии либо mixed-method методологии
+            в зависимости от ваших задач. Проводим глубинные интервью в
+            различных техниках (сфокусированное интервью, photo-elicitation,
+            go-along и т. д.), экспертный сенсус, сетевую антропологию. Можем
+            расширять наш инструментарий фокус-группами и массовыми опросами,
+            организовывать формализованное наблюдение как in situ, так и с
+            помощью видеокамер. Наш инструментарий гибкий и оптимально
+            адаптируется под ваше целеполагание
+          </p>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
