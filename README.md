@@ -1,8 +1,8 @@
-# Гражданская Инженерия
+Civil Engineering
 
-Сайт-портфолио бюро исследований «Гражданская Инженерия».
+Portfolio website for the research bureau “Civil Engineering”.
 
-## Запуск
+## Run
 
 ### Docker
 
@@ -10,18 +10,18 @@
 docker-compose up -d
 ```
 
-Сайт будет доступен на порту 8080.
+The site will be available on port 8080.
 
-### Локально
+### Locally
 
-Откройте `index.html` в браузере.
+Open `index.html` in your browser.
 
-## Структура
+## Structure
 
 ```
-├── index.html          # Основной файл сайта
-├── assets/             # Изображения и медиа
-├── nginx.conf          # Конфигурация nginx
-├── Dockerfile          # Docker образ
-└── docker-compose.yml  # Docker Compose конфигурация
+├── index.html          # Main site file
+├── assets/             # Images and media
+├── nginx.conf          # Nginx configuration
+├── Dockerfile          # Docker image
+└── docker-compose.yml  # Docker Compose configuration
 ```
